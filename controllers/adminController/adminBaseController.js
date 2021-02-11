@@ -381,16 +381,17 @@ var getUser = function (userData, callback) {
       });
     },
     function (cb) {
-      var projection = {
-        password: 0,
-        accessToken: 0,
-        OTPCode: 0,
-        code: 0,
-        codeUpdatedAt: 0,
-        __v: 0,
-        registrationDate: 0
+      var path = 'userId';
+      var select = 'firstName lastName emailId phoneNumber countryCode isBlocked'
+      var populate = {
+        path: path,
+        match: {},
+        select: select,
+        options: { lean: true }
       }
-      Service.UserService.getUser({}, projection, {}, function (err, data) {
+      var projection = {
+      };
+      Service.UserAvatarService.getPopulatedUserAvatar({}, projection, populate, {}, {}, function (err, data) {
         if (err) cb(err)
         else {
           userList = data;

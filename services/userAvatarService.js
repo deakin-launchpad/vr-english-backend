@@ -25,9 +25,16 @@ var getUserAvatar = function(criteria, projection, options, callback) {
   Models.UserAvatar.find(criteria, projection, options, callback);
 };
 
+var getPopulatedUserAvatar = function (criteria, projection, populate, sortOptions, setOptions, callback) {
+  Models.UserAvatar.find(criteria).select(projection).populate(populate).sort(sortOptions).setOptions(setOptions).exec(function(err, result){
+      callback(err, result);
+  });
+};
+
 module.exports = {
   updateUserAvatar: updateUserAvatar,
   createUserAvatar: createUserAvatar,
   deleteUserAvatar: deleteUserAvatar,
-  getUserAvatar: getUserAvatar
+  getUserAvatar: getUserAvatar,
+  getPopulatedUserAvatar: getPopulatedUserAvatar
 };
