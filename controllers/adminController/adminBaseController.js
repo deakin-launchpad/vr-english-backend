@@ -365,22 +365,6 @@ var getUser = function (userData, callback) {
   var userList = []
   async.series([
     function (cb) {
-      var criteria = {
-        _id: userData._id
-      };
-      Service.AdminService.getAdmin(criteria, { password: 0 }, {}, function (err, data) {
-        if (err) cb(err);
-        else {
-          if (data.length == 0) cb(ERROR.INCORRECT_ACCESSTOKEN);
-          else {
-            userFound = (data && data[0]) || null;
-            if (userFound.isBlocked == true) cb(ERROR.ACCOUNT_BLOCKED)
-            else cb()
-          }
-        }
-      });
-    },
-    function (cb) {
       var path = 'userId';
       var select = 'firstName lastName emailId phoneNumber countryCode isBlocked'
       var populate = {

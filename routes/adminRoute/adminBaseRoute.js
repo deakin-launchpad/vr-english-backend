@@ -310,13 +310,8 @@ var getUser = {
   method: "GET",
   path: "/api/admin/getUser",
   handler: function (request, h) {
-    var userData =
-      (request.auth &&
-        request.auth.credentials &&
-        request.auth.credentials.userData) ||
-      null;
     return new Promise((resolve, reject) => {
-      Controller.AdminBaseController.getUser(userData, function (err, data) {
+      Controller.AdminBaseController.getUser(function (err, data) {
         if (!err) {
           resolve(UniversalFunctions.sendSuccess(null, data));
         } else {
@@ -328,9 +323,7 @@ var getUser = {
   config: {
     description: "get all user list",
     tags: ["api", "admin"],
-    auth: "UserAuth",
     validate: {
-      headers: UniversalFunctions.authorizationHeaderObj,
       failAction: UniversalFunctions.failActionFunction
     },
     plugins: {
