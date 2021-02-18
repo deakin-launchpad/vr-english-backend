@@ -361,7 +361,7 @@ var createUser = function (userData, payloadData, callback) {
   })
 }
 
-var getUser = function (userData, callback) {
+var getUser = function (callback) {
   var userList = []
   async.series([
     function (cb) {
