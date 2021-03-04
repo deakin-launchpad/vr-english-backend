@@ -37,7 +37,8 @@ var updateUserAvatar = {
         headers: UniversalFunctions.authorizationHeaderObj,
         payload: {
             gender: Joi.string().required().valid([Config.APP_CONSTANTS.DATABASE.USER_GENDER.MALE,Config.APP_CONSTANTS.DATABASE.USER_GENDER.FEMALE]),
-            shirtColor: Joi.string().required()
+            shirtColor: Joi.string().required(),
+            shoeColor: Joi.string().required()
         },
         failAction: UniversalFunctions.failActionFunction
       },

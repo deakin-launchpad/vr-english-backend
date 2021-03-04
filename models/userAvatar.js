@@ -12,6 +12,7 @@ var userAvatar = new Schema({
       Config.APP_CONSTANTS.DATABASE.USER_GENDER.FEMALE
   ], default: Config.APP_CONSTANTS.DATABASE.USER_GENDER.MALE},
   shirtColor: { type: String, required: true},
+  shoeColor: {type: String},
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
 });

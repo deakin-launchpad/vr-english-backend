@@ -63,7 +63,8 @@ var updateUserAvatar = function (userData, payloadData, callback) {
                 var dataToUpdate = {
                     $set: {
                         gender: payloadData.gender,
-                        shirtColor: payloadData.shirtColor
+                        shirtColor: payloadData.shirtColor,
+                        shoeColor: payloadData.shoeColor
                     }
                 }
 
@@ -79,7 +80,8 @@ var updateUserAvatar = function (userData, payloadData, callback) {
                 var dataToSave = {
                     userId: userData._id,
                     gender: payloadData.gender,
-                    shirtColor: payloadData.shirtColor
+                    shirtColor: payloadData.shirtColor,
+                    shoeColor: payloadData.shoeColor
                 }
                 Service.UserAvatarService.createUserAvatar(dataToSave, function (err, data) {
                     if (err) cb(err)
