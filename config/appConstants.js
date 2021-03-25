@@ -61,12 +61,6 @@ var STATUS_MSG = {
       customMessage: "You are already registered with us",
       type: "USER_ALREADY_REGISTERED"
     },
-    FACEBOOK_ID_PASSWORD_ERROR: {
-      statusCode: 400,
-      customMessage:
-        "Only one field should be filled at a time, either facebookId or password",
-      type: "FACEBOOK_ID_PASSWORD_ERROR"
-    },
     PASSWORD_REQUIRED: {
       statusCode: 400,
       customMessage: "Password is required",
@@ -148,11 +142,6 @@ var STATUS_MSG = {
         "You are not registered with Us. Kindly register yourself to avail services!",
       type: "NOT_REGISTERED"
     },
-    FACEBOOK_ID_NOT_FOUND: {
-      statusCode: 400,
-      customMessage: "Facebook Id Not Found",
-      type: "FACEBOOK_ID_NOT_FOUND"
-    },
     PHONE_VERIFICATION_COMPLETE: {
       statusCode: 400,
       customMessage: "Your mobile number verification is already completed.",
@@ -217,6 +206,11 @@ var STATUS_MSG = {
       statusCode: 400,
       customMessage: "Inavlid email format",
       type: "INVALID_EMAIL_FORMAT"
+    },
+    SCENE_NOT_FOUND: {
+      statusCode: 400,
+      customMessage: "Scene not found.",
+      type: " SCENE_NOT_FOUND"
     }
   },
   SUCCESS: {
