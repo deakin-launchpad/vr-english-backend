@@ -337,7 +337,8 @@ var createGameObjects = function(userData,payloadData,callback){
             Service.SceneObjectService.getPopulatedSceneObjects(criteria,{},populate,{},{},function(err,data){
                 if(err) cb(err)
                 else {
-                    sceneData = data;
+                    sceneData = data && data[0] || null;
+                    sceneData.connectedObjects = (_.where(sceneData.connectedObjects,{isActive: true}))
                     cb()
                 }
             })
