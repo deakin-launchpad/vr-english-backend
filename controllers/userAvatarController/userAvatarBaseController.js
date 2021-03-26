@@ -156,7 +156,48 @@ var getUserAvatar = function (userData, callback) {
         })
 }
 
+var getOtherUserAvatar = function (userData,payloadData, callback) {
+    var userAvatarDetails = null;
+    async.series([
+        function (cb) {
+            var criteria = {
+                _id: userData._id
+            };
+            Service.UserService.getUser(criteria, {}, {}, function (
+                err,
+                data
+            ) {
+                if (err) cb(err);
+                else {
+                    if (data.length == 0) cb(ERROR.INCORRECT_ACCESSTOKEN);
+                    else cb()
+                }
+            });
+        },
+        function (cb) {
+            var criteria = {
+                userId: payloadData.userId
+            }
+            Service.UserAvatarService.getUserAvatar(criteria, {}, {}, function (err, data) {
+                if (err) cb(err);
+                else {
+                    if (data.length != 0) {
+                        userAvatarDetails = data && data[0]
+                        cb()
+                    }
+                    else cb()
+                }
+            })
+        }
+    ],
+        function (error, result) {
+            if (error) callback(error)
+            else callback(null, { userAvatarDetails: userAvatarDetails })
+        })
+}
+
 module.exports = {
     updateUserAvatar: updateUserAvatar,
-    getUserAvatar: getUserAvatar
+    getUserAvatar: getUserAvatar,
+    getOtherUserAvatar: getOtherUserAvatar
 };

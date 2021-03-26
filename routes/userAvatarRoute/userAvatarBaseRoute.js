@@ -91,8 +91,52 @@ var updateUserAvatar = {
     }
   }
 
+  var getOtherUserAvatar = {
+    method: "GET",
+    path: "/api/user/getOtherUserAvatar/{userId}",
+    handler: function(request, h) {
+      var userData =
+        (request.auth &&
+          request.auth.credentials &&
+          request.auth.credentials.userData) ||
+        null;
+        var payloadData = request.params
+      return new Promise((resolve, reject) => {
+        Controller.UserAvatarBaseController.getOtherUserAvatar(userData,payloadData, function(
+          err,
+          data
+        ) {
+          if (!err) {
+            resolve(UniversalFunctions.sendSuccess(null, data));
+          } else {
+            reject(UniversalFunctions.sendError(err));
+          }
+        });
+      });
+    },
+    config: {
+      description: "get user avatar",
+      tags: ["api", "user"],
+      auth: "UserAuth",
+      validate: {
+        headers: UniversalFunctions.authorizationHeaderObj,
+        params:{
+          userId: Joi.string().required()
+        },
+        failAction: UniversalFunctions.failActionFunction
+      },
+      plugins: {
+        "hapi-swagger": {
+          responseMessages:
+            UniversalFunctions.CONFIG.APP_CONSTANTS.swaggerDefaultResponseMessages
+        }
+      }
+    }
+  }
+
 var UserAvatarBaseRoute = [
     updateUserAvatar,
-    getUserAvatar
+    getUserAvatar,
+    getOtherUserAvatar
   ];
   module.exports = UserAvatarBaseRoute;
