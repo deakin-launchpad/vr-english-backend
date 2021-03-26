@@ -285,6 +285,6 @@
     addGameObjectsToScene,
     getAllScenes,
     getAllGameObjects,
-    //getSceneObjects
+    getSceneObjects
   ];
   module.exports = SceneRoute;

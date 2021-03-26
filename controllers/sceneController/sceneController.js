@@ -326,20 +326,15 @@ var createGameObjects = function(userData,payloadData,callback){
             var criteria = {
                 sceneId: payloadData.sceneId
             }
-            let path = 'name description locationX locationY locationZ';
-            var select = 'sceneId';
+            let path = 'sceneId connectedObjects.gameObjectId';
+            var select = 'name description locationX locationY locationZ height';
             let populate = {
                 path: path,
                 match: {},
                 select: select,
                 options: { lean: true }
             };
-            let projection = {
-                __v: 0,
-                createdAt: 0,
-                updatedAt: 0
-            };
-            Service.SceneObjectService.getPopulatedSceneObjects(criteria,projection,populate,{},{},function(err,data){
+            Service.SceneObjectService.getPopulatedSceneObjects(criteria,{},populate,{},{},function(err,data){
                 if(err) cb(err)
                 else {
                     sceneData = data;
