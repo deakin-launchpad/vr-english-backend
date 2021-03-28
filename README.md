@@ -6,7 +6,6 @@ The Node.js app uses [Hapi Framework](https://hapijs.com)
 # Contents
 
 * [Manual Deployment](#manual-deployment)
-* [Upload Image/Document Guidelines](UPLOAD_IMAGE_GUIDLINE.md)
 
 # Project Dependencies
 
